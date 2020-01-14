@@ -8,6 +8,7 @@ let id = 0;
 
 // ToDo Components
 function addToDo(){
+    // Create element in todo list LI
     id++;
     const li = document.createElement('li');
     li.classList.add('item');
@@ -15,12 +16,16 @@ function addToDo(){
     list.appendChild(li);
     li.innerHTML = `
             <i class="fa fa-circle-thin co" work="complete" id=${id}></i>
-            <p class="text">${input.value}</p>
+            <label class="text">${input.value}</label><input type="text">
+            <i class="fa fa-pencil-square-o edit"></i>
             <i class="fa fa-trash-o de" del="delete" id=${id}></i>
     `;
+
+    // Variable in Todo list functionality
     const del = li.querySelector('.de');
     const complete = li.querySelector('.co');
     const text = li.querySelector('.text');
+    const edit = li.querySelector('.edit');
     // Complete element is click in check circle
     complete.addEventListener("click", () => {
         text.classList.toggle('lineThrough');
@@ -33,10 +38,28 @@ function addToDo(){
             complete.classList.add('fa-circle-thin');
         }
     });
+
     // Delete element is click in urn
     del.addEventListener("click", deleteElement);
     function deleteElement(){
         li.remove();
+    }
+   
+
+    // Edit element in todo list
+    edit.addEventListener('click', editTask);
+    function editTask(){
+        let label = li.querySelector('label');
+        let editInput = li.querySelector('input[type=text]');
+        let containsClass = li.classList.contains('editMode');
+        console.log(containsClass)
+        if(containsClass){
+            label.innerText = editInput.value;
+        }else{
+            editInput.value = label.innerText;
+        }
+
+        li.classList.toggle('editMode');
     }
 
     // Call DragnDrop
@@ -66,6 +89,21 @@ function dragStart(e){
             complete.classList.add('fa-circle-thin');
         }
     });
+    let edit = this.querySelector('.edit');
+    edit.addEventListener('click', editTask);
+    function editTask(){
+        let label = li.querySelector('label');
+        let editInput = li.querySelector('input[type=text]');
+        let containsClass = li.classList.contains('editMode');
+        if(containsClass){
+            label.innerText = editInput.value;
+        }else{
+            editInput.value = label.innerText;
+        }
+
+        li.classList.toggle('editMode');
+    }
+    this.classList.remove('over');
 }
 
 function dragEnter(e){
@@ -105,6 +143,20 @@ function dragDrop(e){
             complete.classList.add('fa-circle-thin');
         }
     });
+    let edit = this.querySelector('.edit');
+    edit.addEventListener('click', editTask);
+    function editTask(){
+        let label = li.querySelector('label');
+        let editInput = li.querySelector('input[type=text]');
+        let containsClass = li.classList.contains('editMode');
+        if(containsClass){
+            label.innerText = editInput.value;
+        }else{
+            editInput.value = label.innerText;
+        }
+
+        li.classList.toggle('editMode');
+    }
     this.classList.remove('over');
 }
 
@@ -127,6 +179,21 @@ function dragEnd(e){
             complete.classList.add('fa-circle-thin');
         }
     });
+    let edit = this.querySelector('.edit');
+    edit.addEventListener('click', editTask);
+    function editTask(){
+        let label = li.querySelector('label');
+        let editInput = li.querySelector('input[type=text]');
+        let containsClass = li.classList.contains('editMode');
+        if(containsClass){
+            label.innerText = editInput.value;
+        }else{
+            editInput.value = label.innerText;
+        }
+
+        li.classList.toggle('editMode');
+    }
+    this.classList.remove('over');
     this.style.opacity = '1';
 }
 
@@ -163,7 +230,5 @@ input.addEventListener('keyup', (e) => {
         input.value = '';
     }
 });
-
-// DragnDrop functions
 
 

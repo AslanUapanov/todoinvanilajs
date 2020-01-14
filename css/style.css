@@ -85,7 +85,7 @@ body{
 .fa-check-circle{
     color:#6eb200;
 }
-.item p.text{
+.item label.text{
     position: absolute;
     padding:0;
     margin:0;
@@ -102,11 +102,22 @@ body{
 .item i.de{
     position: absolute;
     font-size: 25px;
-    right:15px;
+    right:14px;
     top:10px;
 }
 .item i.de:hover{
     color:#af0000;
+    cursor: pointer;
+}
+
+.item i.fa-pencil-square-o{
+    position: absolute;
+    font-size: 25px;
+    right: 40px;
+    top: 12px;
+}
+.item i.fa-pencil-square-o:hover{
+    color: #42f566;
     cursor: pointer;
 }
 /* ------------ add item ------------ */
@@ -157,7 +168,25 @@ body{
 .over {
     transform: scale(1.1, 1.1);
   }
-
+ul li input[type=text] {
+    max-width: 285px;
+    display:none;
+}
+ul li.editMode input[type=text] {
+    display: block;
+    position: absolute;
+    padding:0;
+    margin:0;
+    font-size: 20px;
+    left:50px;
+    top:5px;
+    background-color: #FFF;
+    max-width:285px;
+}
+  
+ul li.editMode label {
+    display:none;
+}
 
 
 
